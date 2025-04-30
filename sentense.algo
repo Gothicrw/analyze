@@ -1,0 +1,45 @@
+ALGORITHM AnalyzeSentence
+VAR
+    character : CHARACTER;
+    sentenceLength : INTEGER := 0;
+    wordCount : INTEGER := 1; // Initialize to 1 to account for the first word
+    vowelCount : INTEGER := 0;
+
+BEGIN
+    // Prompt the user to enter a sentence ending with a period.
+    Write("Enter a sentence ending with a period (.).");
+
+    // Read the first character
+    Read(character);
+
+    // Loop until the period is encountered
+    WHILE character <> '.' DO
+        // Increment the sentence length counter for each character read
+        sentenceLength := sentenceLength + 1;
+
+        // Check if the current character is a space
+        IF character = ' ' THEN
+            // If it's a space, increment the word count
+            wordCount := wordCount + 1;
+        END_IF
+
+        // Check if the current character is a vowel (case-insensitive)
+        IF character = 'a' OR character = 'e' OR character = 'i' OR character = 'o' OR character = 'u' OR character = 'A' OR character = 'E' OR character = 'I' OR character = 'O' OR character = 'U' THEN
+            // If it's a vowel, increment the vowel count
+            vowelCount := vowelCount + 1;
+        END_IF
+
+        // Read the next character
+        Read(character);
+    END_WHILE
+
+    // The loop ends when the period is read.
+    // The period itself was also counted in sentenceLength, so we need to include it.
+    sentenceLength := sentenceLength + 1;
+
+    // Display the results
+    Write("Length of the sentence: ", sentenceLength);
+    Write("Number of words in the sentence: ", wordCount);
+    Write("Number of vowels in the sentence: ", vowelCount);
+
+END
